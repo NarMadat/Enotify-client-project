@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Noto Sans Armenian';
+  font-display: swap;
+  src: url('/fonts/NotoSansArmenian.woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  font-display: swap;
+  src: url('/fonts/NotoSans.woff2');
+}
+
+@font-face {
+  font-family: 'FE-Font';
+  src: url('/fonts/FE-FONT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/MaterialSymbolsOutlined.woff2') format('woff2');
+}
+
+* {
+  font-family: 'Noto Sans Armenian', 'Noto Sans', Arial, Helvetica, sans-serif !important;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.2s;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+  
