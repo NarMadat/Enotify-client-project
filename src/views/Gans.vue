@@ -5,7 +5,7 @@
       <Viewport class="mb-8" tableOfContents>
         <div class="flex flex-col" @keydown.enter="onSubmit">
           <div class="flex flex-col gap-2 mt-8">
-            <AppSteper stepText="Step 1/1" />
+            <AppSteper stepText="Քայլ 2/4" />
   
             <p class="text-[#1a1a1a] text-2xl md:text-3xl font-semibold font-['Noto Sans Armenian'] leading-10">
                 Մուտքագրեք SSN և հաղորդագրություն։
@@ -85,7 +85,7 @@
     if (isFormValid.value) {
       const encodedMessage = btoa(message.value);
   
-      const { data, error } = await useFetch('ENTER API HERE')
+      const { data, error } = await useFetch('API HERE')
         .post({
           ssn: ssn.value,
           message: encodedMessage,

@@ -27,7 +27,7 @@
         <div class="text-white text-[13px] sm:text-base font-normal sm:font-bold !leading-normal py-1 max-w-sm">
           <span class="flex">
             Հայաստանի տեղեկատվական 
-            <br>համակարգերի գործակալություն:
+            <br>համակարգերի գործակալություն
           </span>
         </div>
       </RouterLink>
