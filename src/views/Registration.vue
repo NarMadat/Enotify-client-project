@@ -3,14 +3,11 @@
     <AppFormHeader title="Գրանցում համակարգում" class="bg-[#F5F5F5] md:bg-white" />
 
     <Viewport class="mb-8" tableOfContents>
-      <div class="flex flex-col" @keydown.enter="onSubmit">
+      <div class="flex flex-col" @keydown.enter.prevent="onSubmit">
         <div class="flex flex-col gap-2 mt-8">
-          <AppSteper stepText="Քայլ 1/4" />
-
           <p class="text-[#1a1a1a] text-2xl md:text-3xl font-semibold font-['Noto Sans Armenian'] leading-10">
             Նշեք Ձեր մուտքանունն ու գաղտնաբառը
           </p>
-
           <p class="text-[#454545] text-[16px] font-normal">
             Նշեք Ձեր մուտքանունը (username) և գաղտնաբառը (password),
             <br /> որոնցով կարող եք մուտք գործել Ձեր անձնական հաշիվ։
@@ -22,18 +19,18 @@
             type="text"
             class="w-full md:w-[294px]"
             label="Մուտքանուն"
-            v-model="username"
+            v-model="authStore.username"
             @blur="onUsernameBlur"
-            :error="usernameTouched && !isUsernameValid"
+            :error="usernameTouched && !authStore.isUsernameValid"
           />
 
           <AppInputField
             type="password"
             class="w-full md:w-[294px]"
             label="Գաղտնաբառ"
-            v-model="password"
+            v-model="authStore.password"
             @blur="onPasswordBlur"
-            :error="passwordTouched && !isPasswordValid"
+            :error="passwordTouched && !authStore.isPasswordValid"
             errorMessage="Առնվազն 6 նիշ"
           />
 
@@ -42,7 +39,7 @@
               variant="secondary"
               size="regular"
               class="text-[#1a1a1a] font-normal leading-normal"
-              :disabled="!isFormValid"
+              :disabled="!authStore.isFormValid"
               @click="onSubmit"
             >
               Հաջորդ
@@ -55,22 +52,16 @@
   </AppContainer>
 </template>
 
-
-
-<script setup lang="ts">
-import { ref, computed } from 'vue';
+<script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
 
 const router = useRouter();
+const authStore = useAuthStore();
 
-const username = ref('');
-const password = ref('');
 const usernameTouched = ref(false);
 const passwordTouched = ref(false);
-
-const isUsernameValid = computed(() => username.value.length >= 3); 
-const isPasswordValid = computed(() => password.value.length >= 6); 
-const isFormValid = computed(() => isUsernameValid.value && isPasswordValid.value);
 
 const onUsernameBlur = () => {
   usernameTouched.value = true;
@@ -81,8 +72,9 @@ const onPasswordBlur = () => {
 };
 
 const onSubmit = () => {
-  if (isFormValid.value) {
-    router.push('/step2');
+  if (authStore.isFormValid) {
+    router.push('/select');
   }
 };
 </script>
+
